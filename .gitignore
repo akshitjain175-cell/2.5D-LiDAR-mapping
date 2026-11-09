@@ -1,0 +1,36 @@
+# Virtual environment
+.venv/
+venv/
+ENV/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Keep dataset bin files ignored, but allow project screenshots and demo frames
+*.bin
+*.label
+
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Build artifacts & compiled models
+build/
+*.onnx
+*.engine
+*.plan
+*.pt
+*.log
+WAVE_ROVER_FACTORY*/

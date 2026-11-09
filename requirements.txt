@@ -1,0 +1,72 @@
+# Foveated 2.5D LiDAR Grid Mapping — Phase 1 dependencies
+# Member A: Ground Segmentation & Dataset Pipeline
+
+# Core
+numpy>=1.24
+scipy>=1.10
+
+# Visualisation (optional — note: open3d prebuilt wheels currently support Python <= 3.12/3.13)
+# open3d>=0.17
+
+# Patchwork++ ground segmentation (preferred back-end)
+# Falls back to RANSAC if not installed.
+# pypatchworkpp>=0.2
+# Uncomment the line above if your platform supports it.
+# On Windows you may need to build from source — see:
+#   https://github.com/url-kaist/patchwork-plusplus
+
+# Phase 2: Clustering + Classification
+scikit-learn>=1.3
+joblib>=1.3
+
+# Logging / dev
+colorama>=0.4
+
+# Perception training (camera tracking + vehicle info/color)
+# ndrplz-style steering CNN needs torch; ahmetozlu-style counting needs opencv.
+# All are optional at runtime (stub fallbacks) — install to train for real.
+# torch>=2.0
+# torchvision>=0.15
+# opencv-python>=4.8
+pillow>=9.0
+
+# YOLOv5 vehicle detection (optional — uncomment to enable deep detection)
+# Enables VehicleCounter to detect stationary vehicles, not just moving ones.
+# torch>=2.0          # PyTorch (required for YOLOv5)
+# torchvision>=0.15   # Required by YOLOv5
+# ultralytics         # YOLOv5 hub integration
+# opencv-python>=4.8  # Needed for frame processing & annotation
+# seaborn>=0.11       # YOLOv5 training visualisation
+
+# Semantic shape recognition for the browser dashboard (YOLO vision server).
+# python/yolo_vision_server.py streams webcam frames over WebSockets and
+# returns per-object detections (person / car / truck / bus / motorcycle /
+# bicycle + wheel & headlight markers). websockets is REQUIRED for that path;
+# without it the dashboard still tracks every person using its built-in
+# browser cascade (no extra deps beyond opencv/numpy).
+websockets>=12
+ultralytics>=8.0     # Real YOLOv8n pixel inspection (person + vehicle shapes).
+                     # Installed in .venv (8.4.145 verified). With it the server
+                     # resolves backend=yolov8n; without it the server falls
+                     # back to YOLOv5 (torch Hub, needs network once) then to
+                     # an offline cv-cascade.
+
+# -----------------------------------------------------------------------
+# Cloud / Colab GPU deployment (physical-testing.md Section 2, Option 1)
+# -----------------------------------------------------------------------
+pynvml>=11.0         # Cloud GPU telemetry (VRAM, utilization, power, temp).
+                     # Works on discrete NVIDIA GPUs (T4/L4/RTX) but NOT on
+                     # Jetson integrated GPUs — use jetson-stats instead.
+pyngrok>=7.0         # Ngrok tunnel for public dashboard URL from Colab.
+                     # Used by colab_deploy.ipynb to expose the dashboard.
+
+# CPU fallback telemetry (laptop / no-GPU mode)
+psutil>=5.9          # System memory and CPU usage monitoring.
+
+# -----------------------------------------------------------------------
+# Jetson board deployment (physical-testing.md Section 7)
+# Uncomment these when deploying on a physical Jetson Orin/Xavier board.
+# -----------------------------------------------------------------------
+# jetson-stats>=4.2  # jtop / tegrastats for Jetson GPU/power/thermal telemetry.
+                     # Install with: sudo pip3 install jetson-stats
+                     # Required for the JetsonTelemetry backend in python/telemetry.py.
