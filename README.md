@@ -570,12 +570,12 @@ If you use this foveated 2.5D mapping architecture or camera gating algorithms i
 
 ```bibtex
 @misc{foveated_elevation_mapping_2026,
-  author = {Kushak},
-  title = {Foveated 2.5D Semantic Elevation Mapping for Autonomous Vehicle Perception},
+  author = {Akshit Jain},
+  title = { 2.5D LiDAR Mapping for Autonomous Vehicle Perception},
   year = {2026},
   publisher = {GitHub},
   journal = {GitHub repository},
-  howpublished = {\url{https://github.com/Kkushak16/Foveated-2.5D-Semantic-Elevation-Mapping}}
+  howpublished = {\url{https://github.com/akshitjain175-cell/2.5D-LiDAR-mapping}}
 }
 ```
 
