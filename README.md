@@ -189,15 +189,8 @@ When running the interactive teleoperation interface, the vehicle and cameras ca
 
 ---
 
-### Step 1: Clone the Repository
-```bash
-git clone https://github.com/Kkushak16/Foveated-2.5D-Semantic-Elevation-Mapping.git
-cd Foveated-2.5D-Semantic-Elevation-Mapping
-```
 
----
-
-### Step 2: Instant Web Simulation (No Heavy Dependencies)
+### Step 1: Instant Web Simulation (No Heavy Dependencies)
 You can immediately launch and explore the 3D world simulation and telemetry dashboard using any local static server:
 
 #### Option A: Using Node.js
@@ -215,7 +208,7 @@ Then open your browser and navigate to:
 
 ---
 
-### Step 3: Python Machine Learning & Vision Environment
+### Step 2: Python Machine Learning & Vision Environment
 For running the YOLO semantic detector, WebSocket telemetry bridge, and offline evaluation pipeline:
 
 **Linux / macOS:**
@@ -245,7 +238,7 @@ python python/yolo_vision_server.py --port 8765 --conf 0.45
 
 ---
 
-### Step 4: Build the High-Performance C++ / CUDA Core
+### Step 3: Build the High-Performance C++ / CUDA Core
 The build system uses CMake. If `nvcc` is detected on your system, CUDA SIMT projection kernels are compiled automatically; otherwise, the native multi-threaded C++17 CPU fallback is built:
 
 ```bash
@@ -261,7 +254,7 @@ ctest --output-on-failure
 
 ---
 
-### Step 5: ROS 2 Humble / Iron Workspace Setup
+### Step 4: ROS 2 Humble / Iron Workspace Setup
 If you are running the system inside an autonomous vehicle software stack with ROS 2:
 
 ```bash
